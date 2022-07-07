@@ -5,11 +5,11 @@ import java.util.*;
 public class Employee {
     private final String firstName;
     private final String lastName;
-    private int departmentID;
-    private int salary;
+    private final Integer departmentID;
+    private final int salary;
 
 
-    public Employee(String firstName, String lastName, int departmentID, int salary) {
+    public Employee(String firstName, String lastName, Integer departmentID, int salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.departmentID = departmentID;
@@ -26,7 +26,7 @@ public class Employee {
         return lastName;
     }
 
-    public int getDepartmentID() {
+    public Integer getDepartmentID() {
         return this.departmentID;
     }
 

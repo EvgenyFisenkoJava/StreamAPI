@@ -15,41 +15,32 @@ public class DepartmentService {
         this.employeeService = employeeService;
     }
 
-    public List<Employee> getDepList(int departmentID) {
+    public List<Employee> getDepList(Integer departmentID) {
         List<Employee> employeeByDepartment = employeeService.getList();
-
         return employeeByDepartment.stream()
-                .filter(employee -> employee.getDepartmentID() == departmentID)
+                .filter(employee -> employee.getDepartmentID().equals(departmentID))
                 .collect(Collectors.toList());
     }
 
-    public Employee maxSalary(int departmentID) {
+    public Employee maxSalary(Integer departmentID) {
         List<Employee> salary = employeeService.getList();
-        var employee1 = salary.stream()
-                .filter(employee -> employee.getDepartmentID() == departmentID)
-                .max(Comparator.comparingInt(employee -> employee.getSalary())).get();
-
-        return employee1;
+        return salary.stream()
+                .filter(employee -> employee.getDepartmentID().equals(departmentID))
+                .max(Comparator.comparingInt(Employee::getSalary)).get();
     }
 
-    public Employee minSalary(int departmentID) {
+    public Employee minSalary(Integer departmentID) {
         List<Employee> salary = employeeService.getList();
-        var employee1 = salary.stream()
-                .filter(employee -> employee.getDepartmentID() == departmentID)
-                .min(Comparator.comparingInt(employee -> employee.getSalary())).get();
-
-        return employee1;
+        return salary.stream()
+                .filter(employee -> employee.getDepartmentID().equals(departmentID))
+                .min(Comparator.comparingInt(Employee::getSalary)).get();
     }
-
 
     public List<Employee> getAllDepList() {
         List<Employee> allEmployees = employeeService.getList();
-        List<Employee> sortedByDep = allEmployees.stream()
+        allEmployees = allEmployees.stream()
                 .sorted(Comparator.comparingInt(Employee::getDepartmentID))
                 .collect(Collectors.toList());
-
-        return sortedByDep;
+        return allEmployees;
     }
-
-
 }
