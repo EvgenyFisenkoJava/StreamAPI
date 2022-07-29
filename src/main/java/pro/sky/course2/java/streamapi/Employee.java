@@ -1,5 +1,7 @@
 package pro.sky.course2.java.streamapi;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.*;
 
 public class Employee {
@@ -19,11 +21,11 @@ public class Employee {
 
 
     public String getFirstName() {
-        return firstName;
+        return StringUtils.capitalize(firstName);
     }
 
     public String getLastName() {
-        return lastName;
+        return StringUtils.capitalize(lastName);
     }
 
     public Integer getDepartmentID() {
