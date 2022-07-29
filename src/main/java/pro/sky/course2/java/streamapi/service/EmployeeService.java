@@ -1,11 +1,11 @@
 package pro.sky.course2.java.streamapi.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.course2.java.streamapi.Employee;
 import pro.sky.course2.java.streamapi.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.course2.java.streamapi.exceptions.EmployeeNotFoundException;
 import pro.sky.course2.java.streamapi.exceptions.EmployeeStorageIsFullException;
-
 import java.util.*;
 
 @Service
@@ -25,6 +25,7 @@ public class EmployeeService {
             employees.put(key, employee);
             return employee;
         }
+
         throw new EmployeeStorageIsFullException();
     }
 
@@ -50,7 +51,16 @@ public class EmployeeService {
     }
 
     public String getKey(String firstName, String lastName) {
+        if (!StringUtils.isAlpha(firstName)) {
+            throw new RuntimeException();
+                   }
+        if (!StringUtils.isAlpha(lastName)) {
+            throw new RuntimeException();
+        }
+
         return firstName + " " + lastName;
     }
+
+
 
 }

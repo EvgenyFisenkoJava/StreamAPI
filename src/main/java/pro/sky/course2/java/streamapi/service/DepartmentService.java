@@ -17,6 +17,9 @@ public class DepartmentService {
 
     public List<Employee> getDepList(Integer departmentID) {
         List<Employee> employeeByDepartment = employeeService.getList();
+        if (departmentID == null) {
+            throw new IllegalArgumentException();
+        }
         return employeeByDepartment.stream()
                 .filter(employee -> employee.getDepartmentID().equals(departmentID))
                 .collect(Collectors.toList());
